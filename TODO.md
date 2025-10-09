@@ -1,0 +1,2 @@
+- [x] Update Navbar component styling for professionalism
+- [x] Update HomeSection component for seriousness
