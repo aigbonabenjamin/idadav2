@@ -150,18 +150,115 @@ const HomeSection = ({ setActiveSection }) => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: Eye, title: 'EagleEye Platform', desc: 'Revolutionary land intelligence system that helps you understand and navigate Nigerian land with clarity and confidence', color: 'from-blue-500 to-blue-700' },
-              { icon: Cpu, title: 'Smart Solutions', desc: 'Easy-to-use technology that empowers communities and makes complex information simple and accessible', color: 'from-purple-500 to-purple-700' },
-              { icon: Building, title: 'Infrastructure Insights', desc: 'Reliable data and analysis to support smart development decisions for a better Nigeria', color: 'from-green-500 to-green-700' }
+              { icon: Eye, title: 'EagleEye Platform', desc: 'Revolutionary land intelligence system that helps you understand and navigate Nigerian land with clarity and confidence', color: 'from-blue-500 to-blue-700', onClick: () => setActiveSection('eagleeye') },
+              { icon: Cpu, title: 'Smart Solutions', desc: 'Easy-to-use technology that empowers communities and makes complex information simple and accessible', color: 'from-purple-500 to-purple-700', onClick: () => { setActiveSection('home'); setTimeout(() => document.getElementById('smart-solutions').scrollIntoView({behavior: 'smooth'}), 100); } },
+              { icon: Building, title: 'Infrastructure Insights', desc: 'Reliable data and analysis to support smart development decisions for a better Nigeria', color: 'from-green-500 to-green-700', onClick: () => { setActiveSection('home'); setTimeout(() => document.getElementById('infrastructure-insights').scrollIntoView({behavior: 'smooth'}), 100); } }
             ].map((feature, idx) => (
-              <div key={idx} className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 border border-gray-100">
+              <div key={idx} className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 border border-gray-100" onClick={feature.onClick}>
                 <div className={`w-20 h-20 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   <feature.icon className="text-white" size={40} />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">{feature.title}</h3>
                 <p className="text-gray-600 leading-relaxed text-lg">{feature.desc}</p>
+                <button className="group inline-flex items-center gap-2 mt-4 text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-300">
+                  Learn more
+                  <ChevronRight className="group-hover:translate-x-1 transition-transform" size={16} />
+                </button>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Smart Solutions Section */}
+      <div id="smart-solutions" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-3 bg-purple-100 px-6 py-3 rounded-full border border-purple-200 mb-6">
+              <Cpu className="w-6 h-6 text-purple-700" />
+              <span className="text-purple-900 font-medium">Smart Solutions</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">Empowering Communities with Smart Technology</h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Our smart solutions bridge the gap between complex technology and everyday users, making powerful tools accessible to all Nigerians.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {[
+              { title: 'Intuitive Interfaces', desc: 'User-friendly designs that eliminate technical barriers and make technology approachable for everyone.' },
+              { title: 'Community Empowerment', desc: 'Tools that enable local communities to take control of their data and make informed decisions.' },
+              { title: 'Simplified Access', desc: 'Complex information transformed into clear, actionable insights that anyone can understand.' },
+              { title: 'Inclusive Design', desc: 'Solutions built with diverse user needs in mind, ensuring accessibility across all demographics.' },
+              { title: 'Real-time Updates', desc: 'Live data and instant notifications to keep users informed and engaged.' },
+              { title: 'Offline Capability', desc: 'Core functionality available even without internet connectivity, crucial for rural areas.' }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-purple-200">
+                <h3 className="text-xl font-bold mb-3 text-purple-900">{item.title}</h3>
+                <p className="text-purple-700">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="bg-gradient-to-br from-purple-900 to-purple-800 rounded-3xl shadow-xl p-12 text-white text-center">
+            <h3 className="text-3xl font-bold mb-4">Ready to Get Started?</h3>
+            <p className="text-lg mb-6 text-purple-200">Join thousands of Nigerians already benefiting from our smart solutions.</p>
+            <button onClick={() => setActiveSection('contact')} className="bg-white text-purple-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
+              Contact Us Today
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Infrastructure Insights Section */}
+      <div id="infrastructure-insights" className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-3 bg-green-100 px-6 py-3 rounded-full border border-green-200 mb-6">
+              <Building className="w-6 h-6 text-green-700" />
+              <span className="text-green-900 font-medium">Infrastructure Insights</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">Data-Driven Infrastructure Development</h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive analysis and reliable data to guide smart infrastructure decisions and sustainable development across Nigeria.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">Data Collection & Analysis</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-600">Advanced geospatial data gathering techniques for accurate infrastructure mapping</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-600">Real-time monitoring of infrastructure conditions and usage patterns</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-600">Predictive analytics for maintenance and capacity planning</p>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">Strategic Decision Support</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-600">Evidence-based recommendations for infrastructure investments</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-600">Risk assessment and mitigation strategies for development projects</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-600">Sustainability impact analysis for long-term planning</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-green-900 to-green-800 rounded-3xl shadow-xl p-12 text-white text-center">
+            <h3 className="text-3xl font-bold mb-4">Build a Better Nigeria</h3>
+            <p className="text-lg mb-6 text-green-200">Leverage our infrastructure insights to create sustainable, impactful development solutions.</p>
+            <button onClick={() => setActiveSection('contact')} className="bg-white text-green-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
+              Learn More About Our Services
+            </button>
           </div>
         </div>
       </div>
