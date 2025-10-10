@@ -1,8 +1,9 @@
-# TODO: Add Learn More Buttons to Feature Sections
+# Logo Update Task
 
-## Tasks
-- [x] Add smooth scroll behavior to index.css
-- [x] Add "Learn more >" buttons with hover animations to the three feature cards in HomeSection
-- [x] Implement onClick handlers: EagleEye navigates to EagleEye section, Smart Solutions and Infrastructure Insights scroll to new sections in Home
-- [x] Add detailed content sections for Smart Solutions and Infrastructure Insights within HomeSection
-- [ ] Test the functionality by running the app and verifying links and scrolling
+- [x] Import the 'ID tech.png' image at the top of src/App.jsx
+- [x] Replace the logo placeholder in the Navbar component with an img tag, styled with Tailwind classes for a polished look
+- [x] Replace the logo placeholder in the Footer component with an img tag, styled with Tailwind classes
+- [x] Run the development server to verify the logo displays correctly and looks nice
+- [x] Adjust logo styling for light mode to prevent clashing (add background or border)
+- [x] Remove the gray background/border from logo in light mode
+- [x] Add favicon to index.html for browser tab
