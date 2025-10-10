@@ -2,6 +2,8 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { Menu, X, MapPin, Phone, Mail, ChevronRight, Eye, Globe, Building, Users, Cpu, Zap, Send, Upload, Sun, Moon } from 'lucide-react';
 import logo from './ID tech.png';
 import logoBlack from './ID tech-black.png';
+import cityTech from './City-tech.jpg';
+import dataCenter from './Data-Center.jpg';
 
 // Loading spinner used by Suspense
 const LoadingSpinner = () => (
@@ -178,8 +180,9 @@ const HomeSection = ({ setActiveSection, darkMode }) => {
       </div>
 
       {/* Smart Solutions Section */}
-      <div id="smart-solutions" className="py-24 bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="smart-solutions" className="py-24 relative" style={{backgroundImage: `url(${cityTech})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+        <div className="absolute inset-0 bg-white opacity-70 dark:bg-gray-800 dark:opacity-85"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-3 bg-purple-100 dark:bg-purple-900/20 px-6 py-3 rounded-full border border-purple-200 dark:border-purple-800 mb-6">
               <Cpu className="w-6 h-6 text-purple-700 dark:text-purple-300" />
@@ -214,8 +217,9 @@ const HomeSection = ({ setActiveSection, darkMode }) => {
       </div>
 
       {/* Infrastructure Insights Section */}
-      <div id="infrastructure-insights" className="py-24 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="infrastructure-insights" className="py-24 relative" style={{backgroundImage: `url(${dataCenter})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+        <div className="absolute inset-0 bg-white opacity-70 dark:bg-gray-800 dark:opacity-85"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-3 bg-green-100 dark:bg-green-900/20 px-6 py-3 rounded-full border border-green-200 dark:border-green-800 mb-6">
               <Building className="w-6 h-6 text-green-700 dark:text-green-300" />
