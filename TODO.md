@@ -1,4 +1,8 @@
-- [x] Import City-tech.jpg and Data-Center.jpg in src/App.jsx
-- [x] Add City-tech.jpg as background in Smart Solutions section with overlay
-- [x] Add Data-Center.jpg as background in Infrastructure Insights section with overlay
-- [x] Test the website by running dev server
+# TODO: Integrate Database from GitHub and Enable Login/Register Functionality
+
+## Tasks
+- [ ] Clone or download the database repository from GitHub
+- [ ] Set up the backend server with database connection
+- [ ] Update API endpoints to connect to the real database
+- [ ] Enable actual login/register functionality in Login.jsx and Register.jsx
+- [ ] Test the authentication flow with the database

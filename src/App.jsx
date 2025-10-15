@@ -1,9 +1,24 @@
 import React, { useState, useEffect, Suspense } from 'react';
-import { Menu, X, MapPin, Phone, Mail, ChevronRight, Eye, Globe, Building, Users, Cpu, Zap, Send, Upload, Sun, Moon } from 'lucide-react';
-import logo from './ID tech.png';
-import logoBlack from './ID tech-black.png';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Menu, X, MapPin, Phone, Mail, ChevronRight, Eye, Globe, Building, Users, Cpu, Zap, Send, Upload, Sun, Moon, LogIn, LogOut, User } from 'lucide-react';
+import { useAuth } from './AuthContext';
+import Login from './Login';
+import Register from './Register';
+import logo from './Idadav-logo.png';
 import cityTech from './City-tech.jpg';
 import dataCenter from './Data-Center.jpg';
+
+const logoBlack = logo; // Use the same logo for both light and dark modes
+
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<IdaDavWebsite />} />
+      <Route path="/login" element={<Login darkMode={false} />} />
+      <Route path="/register" element={<Register darkMode={false} />} />
+    </Routes>
+  );
+};
 
 // Loading spinner used by Suspense
 const LoadingSpinner = () => (
@@ -20,6 +35,14 @@ const navigation = [
 ];
 
 const Navbar = ({ activeSection, setActiveSection, scrolled, mobileOpen, setMobileOpen, darkMode, toggleDarkMode }) => {
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white dark:bg-gray-900 shadow-md py-3 border-b border-gray-200 dark:border-gray-700' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,6 +76,37 @@ const Navbar = ({ activeSection, setActiveSection, scrolled, mobileOpen, setMobi
           </nav>
 
           <div className="flex items-center gap-2">
+            {isAuthenticated ? (
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 text-gray-900 dark:text-white">
+                  <User size={20} />
+                  <span className="font-medium">{user?.name}</span>
+                  {user?.role === 'admin' && <span className="text-xs bg-orange-500 text-white px-2 py-1 rounded-full">Admin</span>}
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors duration-300"
+                >
+                  <LogOut size={16} />
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => navigate('/login')}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-300"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => navigate('/register')}
+                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-300"
+                >
+                  Register
+                </button>
+              </div>
+            )}
             <button
               onClick={toggleDarkMode}
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
@@ -87,6 +141,28 @@ const Navbar = ({ activeSection, setActiveSection, scrolled, mobileOpen, setMobi
                 {item.name}
               </button>
             ))}
+            {!isAuthenticated && (
+              <div className="flex flex-col gap-2 px-6 py-2">
+                <button
+                  onClick={() => {
+                    navigate('/login');
+                    setMobileOpen(false);
+                  }}
+                  className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all duration-300"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => {
+                    navigate('/register');
+                    setMobileOpen(false);
+                  }}
+                  className="w-full px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold transition-all duration-300"
+                >
+                  Register
+                </button>
+              </div>
+            )}
           </nav>
         )}
       </div>
