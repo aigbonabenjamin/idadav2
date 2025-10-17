@@ -32,20 +32,13 @@ const Register = ({ darkMode }) => {
       return;
     }
 
-    try {
-      const result = await register({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password
-      });
-      if (result.success) {
-        navigate('/');
-      } else {
-        setError(result.message || 'Registration failed');
-      }
-    } catch (err) {
-      setError('An error occurred during registration');
-    }
+    // Mock registration for frontend-only functionality
+    // Users can fill the form but submission is disabled until backend is ready
+    setTimeout(() => {
+      setError('Registration functionality will be available once the backend is integrated.');
+      // Show popup message to indicate submit button is working
+      alert('Registration form submitted successfully! Backend integration coming soon.');
+    }, 1000);
   };
 
   return (

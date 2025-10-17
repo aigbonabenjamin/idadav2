@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Suspense } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Menu, X, MapPin, Phone, Mail, ChevronRight, Eye, Globe, Building, Users, Cpu, Zap, Send, Upload, Sun, Moon, LogIn, LogOut, User } from 'lucide-react';
 import { useAuth } from './AuthContext';
 import Login from './Login';
@@ -7,17 +6,14 @@ import Register from './Register';
 import logo from './Idadav-logo.png';
 import cityTech from './City-tech.jpg';
 import dataCenter from './Data-Center.jpg';
+import eagleeyeLogo from './Eagleeye-logo.png';
+import maviramLogo from './Maviram-logo.png';
+import towmanLogo from './TowMan-logo.png';
 
 const logoBlack = logo; // Use the same logo for both light and dark modes
 
 const App = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<IdaDavWebsite />} />
-      <Route path="/login" element={<Login darkMode={false} />} />
-      <Route path="/register" element={<Register darkMode={false} />} />
-    </Routes>
-  );
+  return <IdaDavWebsite />;
 };
 
 // Loading spinner used by Suspense
@@ -36,11 +32,10 @@ const navigation = [
 
 const Navbar = ({ activeSection, setActiveSection, scrolled, mobileOpen, setMobileOpen, darkMode, toggleDarkMode }) => {
   const { user, isAuthenticated, logout } = useAuth();
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    setActiveSection('home');
   };
 
   return (
@@ -94,13 +89,13 @@ const Navbar = ({ activeSection, setActiveSection, scrolled, mobileOpen, setMobi
             ) : (
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => navigate('/login')}
+                  onClick={() => setActiveSection('login')}
                   className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-300"
                 >
                   Login
                 </button>
                 <button
-                  onClick={() => navigate('/register')}
+                  onClick={() => setActiveSection('register')}
                   className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-300"
                 >
                   Register
@@ -145,7 +140,7 @@ const Navbar = ({ activeSection, setActiveSection, scrolled, mobileOpen, setMobi
               <div className="flex flex-col gap-2 px-6 py-2">
                 <button
                   onClick={() => {
-                    navigate('/login');
+                    setActiveSection('login');
                     setMobileOpen(false);
                   }}
                   className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all duration-300"
@@ -154,7 +149,7 @@ const Navbar = ({ activeSection, setActiveSection, scrolled, mobileOpen, setMobi
                 </button>
                 <button
                   onClick={() => {
-                    navigate('/register');
+                    setActiveSection('register');
                     setMobileOpen(false);
                   }}
                   className="w-full px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold transition-all duration-300"
@@ -235,13 +230,13 @@ const HomeSection = ({ setActiveSection, darkMode }) => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: Eye, title: 'EagleEye Platform', desc: 'Revolutionary land intelligence system that helps you understand and navigate Nigerian land with clarity and confidence', color: 'from-blue-500 to-blue-700 dark:from-blue-600 dark:to-blue-800', onClick: () => setActiveSection('eagleeye') },
-              { icon: Cpu, title: 'Smart Solutions', desc: 'Easy-to-use technology that empowers communities and makes complex information simple and accessible', color: 'from-purple-500 to-purple-700 dark:from-purple-600 dark:to-purple-800', onClick: () => { setActiveSection('home'); setTimeout(() => document.getElementById('smart-solutions').scrollIntoView({behavior: 'smooth'}), 100); } },
-              { icon: Building, title: 'Infrastructure Insights', desc: 'Reliable data and analysis to support smart development decisions for a better Nigeria', color: 'from-green-500 to-green-700 dark:from-green-600 dark:to-green-800', onClick: () => { setActiveSection('home'); setTimeout(() => document.getElementById('infrastructure-insights').scrollIntoView({behavior: 'smooth'}), 100); } }
+              { img: eagleeyeLogo, title: 'EagleEye', desc: 'Revolutionary land intelligence system that helps you understand and navigate Nigerian land with clarity and confidence', color: 'from-blue-500 to-blue-700 dark:from-blue-600 dark:to-blue-800', onClick: () => setActiveSection('eagleeye') },
+              { img: maviramLogo, title: 'Maviram', desc: 'An E-commerce solution that provides you with the possibility of ordering your fruits and food items from and get it delivered to you fast', color: 'from-purple-500 to-purple-700 dark:from-purple-600 dark:to-purple-800', onClick: () => { setActiveSection('home'); setTimeout(() => document.getElementById('smart-solutions').scrollIntoView({behavior: 'smooth'}), 100); } },
+              { img: towmanLogo, title: 'TowMan', desc: 'COMING SOON', color: 'from-green-500 to-green-700 dark:from-green-600 dark:to-green-800', onClick: () => { setActiveSection('home'); setTimeout(() => document.getElementById('infrastructure-insights').scrollIntoView({behavior: 'smooth'}), 100); } }
             ].map((feature, idx) => (
               <div key={idx} className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 border border-gray-100 dark:border-gray-700" onClick={feature.onClick}>
                 <div className={`w-20 h-20 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className="text-white" size={40} />
+                  <img src={feature.img} alt={feature.title} className="w-16 h-16 object-contain" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">{feature.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">{feature.desc}</p>
@@ -711,6 +706,10 @@ const IdaDavWebsite = () => {
         return <ContactSection darkMode={darkMode} />;
       case 'careers':
         return <CareersSection darkMode={darkMode} />;
+      case 'login':
+        return <Login setActiveSection={setActiveSection} darkMode={darkMode} />;
+      case 'register':
+        return <Register setActiveSection={setActiveSection} darkMode={darkMode} />;
       default:
         return <HomeSection setActiveSection={setActiveSection} darkMode={darkMode} />;
     }
@@ -734,7 +733,7 @@ const IdaDavWebsite = () => {
         </Suspense>
       </main>
 
-      <Footer darkMode={darkMode} />
+      {activeSection !== 'login' && activeSection !== 'register' && <Footer darkMode={darkMode} />}
     </div>
   );
 };

@@ -18,16 +18,13 @@ const Login = ({ darkMode }) => {
     e.preventDefault();
     setError('');
 
-    try {
-      const result = await login(formData.email, formData.password);
-      if (result.success) {
-        navigate('/');
-      } else {
-        setError(result.message || 'Login failed');
-      }
-    } catch (err) {
-      setError('An error occurred during login');
-    }
+    // Mock login for frontend-only functionality
+    // Users can fill the form but submission is disabled until backend is ready
+    setTimeout(() => {
+      setError('Login functionality will be available once the backend is integrated.');
+      // Show popup message to indicate submit button is working
+      alert('Login form submitted successfully! Backend integration coming soon.');
+    }, 1000);
   };
 
   return (
