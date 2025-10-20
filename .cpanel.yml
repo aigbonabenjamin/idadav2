@@ -1,35 +1,13 @@
-name: Deploy to cPanel
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Build project
-      run: npm run build
-
-    - name: Deploy to cPanel via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./dist/
-        server-dir: /public_html/
+---
+deployment:
+  tasks:
+    - export DEPLOY_LOG=/home/cpuser/tmp/deploy.log
+    - cd ~/public_html
+    - git clone https://github.com/aigbonabenjamin/idadav2.git temp_repo || (echo "Git clone failed" >> $DEPLOY_LOG && exit 1)
+    - cd temp_repo
+    - npm install >> $DEPLOY_LOG 2>&1 || (echo "npm install failed" >> $DEPLOY_LOG && exit 1)
+    - npm run build >> $DEPLOY_LOG 2>&1 || (echo "npm run build failed" >> $DEPLOY_LOG && exit 1)
+    - cp -r dist/* ../ >> $DEPLOY_LOG 2>&1 || (echo "Copy failed" >> $DEPLOY_LOG && exit 1)
+    - cd ..
+    - rm -rf temp_repo >> $DEPLOY_LOG 2>&1
+    - echo "Deployment completed successfully" >> $DEPLOY_LOG
