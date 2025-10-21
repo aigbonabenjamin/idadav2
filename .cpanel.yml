@@ -1,13 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOY_LOG=/home/cpuser/tmp/deploy.log
-    - cd ~/public_html
-    - git clone https://github.com/aigbonabenjamin/idadav2.git temp_repo || (echo "Git clone failed" >> $DEPLOY_LOG && exit 1)
-    - cd temp_repo
-    - npm install >> $DEPLOY_LOG 2>&1 || (echo "npm install failed" >> $DEPLOY_LOG && exit 1)
-    - npm run build >> $DEPLOY_LOG 2>&1 || (echo "npm run build failed" >> $DEPLOY_LOG && exit 1)
-    - cp -r dist/* ../ >> $DEPLOY_LOG 2>&1 || (echo "Copy failed" >> $DEPLOY_LOG && exit 1)
-    - cd ..
-    - rm -rf temp_repo >> $DEPLOY_LOG 2>&1
-    - echo "Deployment completed successfully" >> $DEPLOY_LOG
+    - npm install
+    - npm run build
+    - cp -r dist/* ../
