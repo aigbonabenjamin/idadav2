@@ -31,34 +31,26 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await authAPI.login({ email, password });
-      if (response.token) {
-        setUser(response.user);
-        setToken(response.token);
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
-        return { success: true, user: response.user };
-      } else {
-        return { success: false, message: response.message };
-      }
+      setUser(response.user);
+      setToken(response.token);
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(response.user));
+      return { success: true, user: response.user };
     } catch (error) {
-      return { success: false, message: 'Login failed' };
+      return { success: false, message: error.message };
     }
   };
 
   const register = async (userData) => {
     try {
       const response = await authAPI.register(userData);
-      if (response.token) {
-        setUser(response.user);
-        setToken(response.token);
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
-        return { success: true };
-      } else {
-        return { success: false, message: response.message };
-      }
+      setUser(response.user);
+      setToken(response.token);
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(response.user));
+      return { success: true };
     } catch (error) {
-      return { success: false, message: 'Registration failed' };
+      return { success: false, message: error.message };
     }
   };
 
