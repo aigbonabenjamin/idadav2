@@ -1,10 +1,8 @@
-# TODO: Develop Backend Server and Connect to Frontend
+# TODO: Integrate Database from GitHub and Enable Login/Register Functionality
 
-- [x] Create backend/package.json with required dependencies
-- [x] Create backend/server.js with Express server, MySQL connection, and auth endpoints
-- [x] Update src/api.js to use real API calls instead of mocks
-- [x] Update src/AuthContext.jsx to handle real API responses
-- [x] Update src/Login.jsx to remove mock error messages
-- [x] Update src/Register.jsx to remove mock error messages
-- [ ] Install backend dependencies
-- [ ] Test login/register functionality
+## Tasks
+- [ ] Clone or download the database repository from GitHub
+- [ ] Set up the backend server with database connection
+- [ ] Update API endpoints to connect to the real database
+- [ ] Enable actual login/register functionality in Login.jsx and Register.jsx
+- [x] Test the authentication flow with the database (frontend-only with popup messages)

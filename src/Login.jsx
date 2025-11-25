@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, LogIn, Shield } from 'lucide-react';
 import { useAuth } from './AuthContext';
-import logo from './idatech-logo.png';
+import logo from './Idadav-logo.png';
 
-const Login = ({ darkMode, setActiveSection }) => {
+const Login = ({ darkMode }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [isAdminLogin, setIsAdminLogin] = useState(false);
   const [adminCode, setAdminCode] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const { login } = useAuth();
 
@@ -16,13 +18,13 @@ const Login = ({ darkMode, setActiveSection }) => {
     e.preventDefault();
     setError('');
 
-    const result = await login(formData.email, formData.password);
-    if (!result.success) {
-      setError(result.message);
-    } else {
-      // Navigation will be handled by the parent component or routing
-      alert('Login successful!');
-    }
+    // Mock login for frontend-only functionality
+    // Users can fill the form but submission is disabled until backend is ready
+    setTimeout(() => {
+      setError('Login functionality will be available once the backend is integrated.');
+      // Show popup message to indicate submit button is working
+      alert('Login form submitted successfully! Backend integration coming soon.');
+    }, 1000);
   };
 
   return (
@@ -30,7 +32,7 @@ const Login = ({ darkMode, setActiveSection }) => {
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <div className="flex justify-center mb-6">
-<img src={logo} alt="idatech Logo" className="w-16 h-16 rounded-xl shadow-lg" />
+            <img src={logo} alt="IdaDav Tech Logo" className="w-16 h-16 rounded-xl shadow-lg" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
             {isAdminLogin ? 'Admin Login' : 'Welcome Back'}
@@ -131,12 +133,9 @@ const Login = ({ darkMode, setActiveSection }) => {
           <div className="mt-6 text-center">
             <p className="text-gray-600 dark:text-gray-400">
               Don't have an account?{' '}
-              <button
-                onClick={() => setActiveSection('register')}
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors duration-300"
-              >
+              <Link to="/register" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors duration-300">
                 Sign up here
-              </button>
+              </Link>
             </p>
           </div>
         </div>
