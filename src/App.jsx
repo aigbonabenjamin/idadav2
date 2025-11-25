@@ -3,7 +3,7 @@ import { Menu, X, MapPin, Phone, Mail, ChevronRight, Eye, Globe, Building, Users
 import { useAuth } from './AuthContext';
 import Login from './Login';
 import Register from './Register';
-import logo from './Idadav-logo.png';
+import logo from './IdaTech-logo.png';
 import cityTech from './City-tech.jpg';
 import dataCenter from './Data-Center.jpg';
 import eagleeyeLogo from './Eagleeye-logo.png';
@@ -43,9 +43,9 @@ const Navbar = ({ activeSection, setActiveSection, scrolled, mobileOpen, setMobi
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveSection('home')}>
-            <img src={darkMode ? logo : logoBlack} alt="IdaDav Tech Logo" className="w-12 h-12 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" />
+            <img src={darkMode ? logo : logoBlack} alt="IdaTech Tech Logo" className="w-12 h-12 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" />
             <span className="text-2xl font-bold text-gray-900 dark:text-white">
-              IdaDav Tech
+              IdaTech Tech
             </span>
           </div>
 
@@ -529,7 +529,7 @@ const ContactSection = () => {
           {[
             { icon: MapPin, text: 'Plot 180 Cadastral Zone Lugbe, Abuja', color: 'from-red-500 to-red-600 dark:from-red-600 dark:to-red-700' },
             { icon: Phone, text: '07033343488 / 07086394609', color: 'from-green-500 to-green-600 dark:from-green-600 dark:to-green-700' },
-            { icon: Mail, text: 'info@idadavtech.com', color: 'from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700' }
+            { icon: Mail, text: 'info@idatech.com', color: 'from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700' }
           ].map((item, idx) => (
             <div key={idx} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group">
               <div className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
@@ -626,8 +626,8 @@ const Footer = ({ darkMode }) => (
       <div className="grid md:grid-cols-3 gap-8 mb-8">
         <div>
           <div className="flex items-center space-x-3 mb-4">
-            <img src={darkMode ? logo : logoBlack} alt="IdaDav Tech Logo" className="w-10 h-10 rounded-xl shadow-md" />
-            <span className="text-xl font-bold">IdaDav Tech Solutions</span>
+            <img src={darkMode ? logo : logoBlack} alt="IdaTech Tech Logo" className="w-10 h-10 rounded-xl shadow-md" />
+            <span className="text-xl font-bold">IdaTech Tech Solutions</span>
           </div>
           <p className="text-blue-600 dark:text-blue-200">Empowering Nigeria through technology and innovation</p>
         </div>
@@ -652,13 +652,13 @@ const Footer = ({ darkMode }) => (
       </div>
 
       <div className="border-t border-gray-300 dark:border-blue-800 pt-8 text-center text-blue-600 dark:text-blue-200">
-        <p>&copy; 2025 IdaDav Tech Solutions Ltd. All rights reserved.</p>
+        <p>&copy; 2025 IdaTech Tech Solutions Ltd. All rights reserved.</p>
       </div>
     </div>
   </footer>
 );
 
-const IdaDavWebsite = () => {
+const IdaTechWebsite = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
