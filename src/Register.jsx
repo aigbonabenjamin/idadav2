@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, UserPlus, Mail, Lock, User } from 'lucide-react';
 import { useAuth } from './AuthContext';
-import logo from './Idadav-logo.png';
+import logo from './IdaTech-logo.png';
 
 const Register = ({ darkMode }) => {
   const [formData, setFormData] = useState({

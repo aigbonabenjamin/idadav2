@@ -10,6 +10,7 @@ import eagleeyeLogo from './Eagleeye-logo.png';
 import maviramLogo from './Maviram-logo.png';
 import towmanLogo from './TowMan-logo.png';
 
+
 const logoBlack = logo; // Use the same logo for both light and dark modes
 
 const App = () => {
@@ -43,9 +44,9 @@ const Navbar = ({ activeSection, setActiveSection, scrolled, mobileOpen, setMobi
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveSection('home')}>
-            <img src={darkMode ? logo : logoBlack} alt="IdaTech Tech Logo" className="w-12 h-12 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" />
+            <img src="/IdaTech-logo.png" alt="IdaTech Logo" className="w-12 h-12 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" />
             <span className="text-2xl font-bold text-gray-900 dark:text-white">
-              IdaTech Tech
+              IdaTech solutions
             </span>
           </div>
 
@@ -626,7 +627,7 @@ const Footer = ({ darkMode }) => (
       <div className="grid md:grid-cols-3 gap-8 mb-8">
         <div>
           <div className="flex items-center space-x-3 mb-4">
-            <img src={darkMode ? logo : logoBlack} alt="IdaTech Tech Logo" className="w-10 h-10 rounded-xl shadow-md" />
+<img src="/IdaTech-logo.png" alt="IdaTech Tech Logo" className="w-10 h-10 rounded-xl shadow-md" />
             <span className="text-xl font-bold">IdaTech Tech Solutions</span>
           </div>
           <p className="text-blue-600 dark:text-blue-200">Empowering Nigeria through technology and innovation</p>
@@ -738,4 +739,4 @@ const IdaTechWebsite = () => {
   );
 };
 
-export default IdaDavWebsite;
+export default IdaTechWebsite;

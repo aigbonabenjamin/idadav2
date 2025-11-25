@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, LogIn, Shield } from 'lucide-react';
 import { useAuth } from './AuthContext';
-import logo from './Idadav-logo.png';
+import logo from './IdaTech-logo.png';
 
 const Login = ({ darkMode }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
